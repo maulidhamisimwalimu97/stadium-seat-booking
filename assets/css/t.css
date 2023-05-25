@@ -1,0 +1,15 @@
+.seat {
+    width: 40px;
+    height: 40px;
+    margin: 5px;
+    display: inline-block;
+    background-color: #ccc;
+    cursor: pointer;
+  }
+  .selected {
+    background-color: #f00;
+  }
+  .seat{
+    font-size: larger;
+    
+  }

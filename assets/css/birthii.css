@@ -1,0 +1,53 @@
+		body {
+			background-color: lightgoldenrodyellow;
+            padding-bottom: -180px;
+			padding: -1px;
+			
+		}
+		.container {
+			margin-top: 50px;
+		}
+		.form-control:focus {
+			box-shadow: none;
+			border-color: #007bff;
+		}
+		.login-button {
+			background-color: #007bff;
+			border-color: #007bff;
+		}
+		.login-button:hover {
+			background-color: #0069d9;
+			border-color: #0062cc;
+		}
+		.error {
+			color: #dc3545;
+			font-size: 14px;
+			margin-top: 5px;
+			display: none;
+		}
+		.navbar-brand {
+			font-size: 23px;
+			font-weight: bold;
+		}
+		.nav-link {
+			font-size: 16.1px;
+			font-weight: bold;
+			color: #fff !important;
+			margin-right: 20px;
+		}
+		.nav-link:hover {
+			color: #fff !important;
+			text-decoration: none;
+		}
+		.active {
+			background-color: #007bff !important;
+		}
+		.img {
+			padding-bottom: 90px;
+			background-color: #dc3545;
+		}
+
+		.img {
+			background-color: #dc3545;
+		}
+		

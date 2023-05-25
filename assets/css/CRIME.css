@@ -1,0 +1,49 @@
+.a{
+	text-decoration: none;
+ 
+}
+
+html body {
+	background: url(hospital.jpg);
+	background-size: cover;
+	background-position: center;
+	font-family: time new roman;
+	font-size: 30px;
+	background-color:darkgray ;
+}
+.home {
+	font-family: times new roman;
+	font-size: 15;
+
+}
+
+html h2{
+	color: white;
+	background-color: black;
+	margin-right: 110px;
+	margin-left: 100px;
+	padding-bottom: ;
+	border-radius: 50px;
+}
+
+
+	.hamisi{
+		font-size:25px;
+		margin-left: auto;
+		
+	background-color: gray;
+	padding: 100px;
+		margin-right: 850px;
+	}
+	
+
+.form{
+	background-color: gray;
+	color: black;
+	text-align: center;
+	margin-right: 320px;
+	margin-left: 320px;
+	text-decoration: none;
+
+}
+
