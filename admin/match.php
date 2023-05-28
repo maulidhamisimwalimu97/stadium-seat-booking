@@ -3,6 +3,9 @@
       <div class="d-flex justify-content-center">
         <form action="matchAction.php" method="POST" style="width: 500px;">
             <h3 class="text-center" >Add new match</h3>
+              <?php require_once('include/messages.php');
+                  if(isset($_GET['key'])){}
+              ?>
               <div class="form-group">
                 <label for="name">Team One:</label>
                 <input type="text" class="form-control" name="teamOne" placeholder="team one name" required>

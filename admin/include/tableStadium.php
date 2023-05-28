@@ -8,7 +8,11 @@
                 <h4 class="card-title card-title-dash">Table show stadiums</h4>
                 </div>
                 <div>
-                    <a href="match.php" class="btn btn-primary btn-sm text-white mb-0 me-0" ><i class="mdi mdi-plus"></i>Add Stadium</a>
+                    
+                    <?php require_once('include/messages.php');
+                        if(isset($_GET['key'])){}
+                    ?>
+                    <a href="" disabled class="btn btn-primary btn-sm text-white mb-0 me-0" ><i class="mdi mdi-plus"></i>Add Stadium</a>
                 </div>
             </div>
             <div class="table-responsive  mt-1">

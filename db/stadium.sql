@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: May 24, 2023 at 05:05 PM
+-- Host: 127.0.0.1
+-- Generation Time: May 28, 2023 at 11:44 AM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.1.12
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `admin_id` int(30) NOT NULL,
-  `name` varchar(100) NOT NULL,
+  `fullName` varchar(100) NOT NULL,
   `email` varchar(30) NOT NULL,
   `username` varchar(100) NOT NULL,
   `password` varchar(30) NOT NULL
@@ -39,8 +39,8 @@ CREATE TABLE `admin` (
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`admin_id`, `name`, `email`, `username`, `password`) VALUES
-(1, 'samile', 'samileking9@gmail.com', 'samile', '1234');
+INSERT INTO `admin` (`admin_id`, `fullName`, `email`, `username`, `password`) VALUES
+(1, 'king samile', 'samileking@gmail.com', 'samile', '1234');
 
 -- --------------------------------------------------------
 
@@ -51,6 +51,7 @@ INSERT INTO `admin` (`admin_id`, `name`, `email`, `username`, `password`) VALUES
 CREATE TABLE `booking` (
   `booking_id` int(30) NOT NULL,
   `user_id` int(30) NOT NULL,
+  `event_id` int(30) NOT NULL,
   `seat_id` int(30) NOT NULL,
   `b_date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -101,20 +102,24 @@ INSERT INTO `match` (`matchId`, `teamOne`, `teamTwo`, `dateToPray`, `timeToPray`
 CREATE TABLE `seat` (
   `seat_id` int(30) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `type` enum('VIP','ROUND') NOT NULL
+  `type` enum('VIP','ROUND','REGULAR') NOT NULL,
+  `seatTypeFee` int(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `seat`
 --
 
-INSERT INTO `seat` (`seat_id`, `user_id`, `type`) VALUES
-(8, 9, 'VIP'),
-(9, 9, 'ROUND'),
-(10, 9, 'ROUND'),
-(11, 12, 'VIP'),
-(12, 13, 'VIP'),
-(13, 13, 'VIP');
+INSERT INTO `seat` (`seat_id`, `user_id`, `type`, `seatTypeFee`) VALUES
+(1, 0, '', 0),
+(2, 4, 'ROUND', 0),
+(3, 5, 'ROUND', 0),
+(4, 5, 'ROUND', 10000),
+(5, 5, 'ROUND', 0),
+(6, 5, 'VIP', 0),
+(7, 5, 'ROUND', 0),
+(8, 5, 'VIP', 10000),
+(9, 5, 'VIP', 10000);
 
 -- --------------------------------------------------------
 
@@ -134,7 +139,7 @@ CREATE TABLE `stadiums` (
 --
 
 INSERT INTO `stadiums` (`stadium_id`, `name`, `location`, `capacity`) VALUES
-(1, 'Taifa', 'Dar Es Salaam', 500);
+(1, 'mkapa', 'Dar Es Salaam', 500);
 
 -- --------------------------------------------------------
 
@@ -143,7 +148,7 @@ INSERT INTO `stadiums` (`stadium_id`, `name`, `location`, `capacity`) VALUES
 --
 
 CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
+  `user_id` int(30) NOT NULL,
   `name` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `matchId` int(11) NOT NULL
@@ -154,15 +159,11 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `name`, `email`, `matchId`) VALUES
-(5, 'MAULID', 'maulid22@gmail.com', 1),
-(6, 'Juma Mwalimu', 'juma11@gmail.com', 1),
-(7, 'yuha', 'yuha1@gmaILcom', 1),
-(8, 'yuha', 'yuha1@gmaILcom', 1),
-(9, 'yuha', 'yuha1@gmaILcom', 1),
-(10, 'jamila', 'jamila@gmail.com', 1),
-(11, 'shsh', 'ssh@gmail.com', 1),
-(12, 'ddd', 'dd@mail.com', 1),
-(13, 'Juma Mwalimu', 'jj@mail.com', 1);
+(1, 'maulid', 'maulid1@gmail.com', 0),
+(2, 'samile', 'samileking9@gmail.com', 0),
+(3, 'yohana samile', 'yohanasamile@gmail.com', 1),
+(4, 'yohana samile', 'yohanasamile@gmail.com', 1),
+(5, 'yohana samile', 'yohanasamile@gmail.com', 1);
 
 --
 -- Indexes for dumped tables
@@ -178,7 +179,8 @@ ALTER TABLE `admin`
 -- Indexes for table `booking`
 --
 ALTER TABLE `booking`
-  ADD PRIMARY KEY (`booking_id`);
+  ADD PRIMARY KEY (`booking_id`),
+  ADD UNIQUE KEY `seat_id` (`user_id`,`event_id`,`seat_id`);
 
 --
 -- Indexes for table `event`
@@ -237,7 +239,7 @@ ALTER TABLE `match`
 -- AUTO_INCREMENT for table `seat`
 --
 ALTER TABLE `seat`
-  MODIFY `seat_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `seat_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `stadiums`
@@ -249,7 +251,7 @@ ALTER TABLE `stadiums`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

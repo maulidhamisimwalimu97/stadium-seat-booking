@@ -16,7 +16,7 @@
   </div>
 
   <div class="mySlides light">
-    <img src="images/7.jpg" style="width:100%; height:103%;">
+    <img src="images/1149d8f529112f71588e862fd2eceac0-1.jpg" style="width:100%; height:103%;">
     <div class="text">Our Stadium</div>
   </div>
   <div style="text-align:center">

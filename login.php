@@ -3,6 +3,7 @@
 <div class="container">
       <div class="d-flex justify-content-center">
         <form action="loginAction.php" method="POST" style="width: 500px;">
+            <?php if(isset($_GET['key'])){} ?>
             <h3 class="text-center" >Login page</h3>
               <div class="form-group">
                 <label for="name">Username</label>

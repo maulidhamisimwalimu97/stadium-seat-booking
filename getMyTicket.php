@@ -4,7 +4,7 @@
     $userId = $conn->query("SELECT * From seat order by seat_id desc");
     $user_id = mysqli_fetch_assoc($userId);
     $user = $user_id['user_id'];
-    $sql= "SELECT * FROM `match`, `user`, `seat` WHERE seat.user_id = user.user_id AND user.matchId = match.matchId and user.user_id = '$user' limit 1";
+    $sql= "SELECT * FROM `match`, `user`, `seat` WHERE seat.user_id = user.user_id AND user.matchId = match.matchId and user.user_id = '5' ORDER BY seat_id DESC limit 1;";
     $query=mysqli_query($conn,$sql);
     $result = mysqli_fetch_assoc($query); ?>
 <div id="getMyTicket">
@@ -58,7 +58,7 @@
                         </div><hr>
                         <div class="row">
                             <div class="col-sm-6">
-                            <b>Date</b>
+                            <b>Date To Play</b>
                             </div>
                             <div class="col-sm-6 text-secondary">
                                 <b><?php echo $result["dateToPray"]; ?></b>
@@ -66,10 +66,26 @@
                         </div><hr>
                         <div class="row">
                             <div class="col-sm-6">
-                            <b>Time</b>
+                            <b>Time To Play</b>
                             </div>
                             <div class="col-sm-6 text-secondary">
                                 <b><?php echo $result["timeToPray"]; ?></b>
+                            </div>
+                        </div><hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                            <b>Seat Level</b>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <b><?php echo $result["type"]; ?></b>
+                            </div>
+                        </div><hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                            <b>Seat Payment Fee</b>
+                            </div>
+                            <div class="col-sm-6 text-secondary">
+                                <b><?php echo $result["seatTypeFee"]; ?> Tsh</b>
                             </div>
                         </div>
                     </div>
@@ -78,12 +94,17 @@
         </div>
     </div>
     <div class="container">
-        <div class="alert alert-warning">
-            <p class="text-warning">Do not leave this page till ypou print you ticket</p>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="alert alert-warning">
+                    <p class="text-warning">Do not leave this page till ypou print you ticket</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <a href="" onclick="getMyTicket()" class="btn btn-primary float-right">Print Ticket</a>
+            </div>
         </div>
-        <a href="" onclick="getMyTicket()" class="btn btn-primary float-right">Print Ticket</a>
-    </div>
-                
+    </div>                
     <script>
         function getMyTicket(){
             var ticket = window.open('', '_blank', 'height = 700, width = 800');

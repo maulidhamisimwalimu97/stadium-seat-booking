@@ -1,6 +1,5 @@
 <?php 
   require_once('include/dbConnection.php'); 
-  require_once('include/messages.php'); 
   if(empty($_SESSION['adminData']['admin_id'])):
     header('location:../index.php');
   endif;
@@ -27,6 +26,9 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+
+    <!-- supportive online libraly -->        
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>

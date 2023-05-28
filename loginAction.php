@@ -8,7 +8,7 @@
             $_SESSION['error'] = "all field are mandatory";
             header('location:login.php?key=error');
         else:
-            $findUSer = $conn->query("SELECT * FROM admin WHERE username = '$username' AND password = '$password' limit 1");
+            $findUSer = $conn->query("SELECT * FROM `admin` WHERE username = '$username' AND password = '$password' limit 1");
             if(mysqli_num_rows($findUSer) > 0):
                 $result = mysqli_fetch_array($findUSer);
                 $_SESSION['adminData'] = $result;

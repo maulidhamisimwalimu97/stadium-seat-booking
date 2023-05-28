@@ -5,7 +5,6 @@
         <?php require_once('include/teamTable.php'); ?>
     </div>
     <!-- END OF USER TABLE -->
-
 </div>
 <div class="" hidden>
 <?php require_once('modal/modal.php'); ?>

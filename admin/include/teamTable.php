@@ -1,4 +1,3 @@
-
 <div class="col-lg-12 d-flex flex-column">
     <div class="col-12 grid-margin stretch-card">
         <div class="card card-rounded">
@@ -8,6 +7,9 @@
                 <h4 class="card-title card-title-dash">Matchs</h4>
                 </div>
                 <div>
+                    <?php require_once('include/messages.php');
+                        if(isset($_GET['key'])){}
+                    ?>
                     <a href="match.php" class="btn btn-primary btn-sm text-white mb-0 me-0" ><i class="mdi mdi-plus"></i>Add match</a>
                 </div>
             </div>
@@ -27,7 +29,7 @@
                         <th>Date</th>
                         <th>Time</th>
                         <th>Status</th>
-                        <th>Action</th>
+                        <th class="text-center">Action</th>
                     </tr>
                 </thead>
                 <tbody>                    
@@ -66,7 +68,15 @@
                                     <td>
                                         <h6><?= $teamResult['timeToPray']; ?></h6>
                                     </td>
-                                    <td><div class="badge badge-opacity-success"><?= $teamResult['status']; ?></div></td>
+                                    <td>
+                                        <?php if($teamResult['status'] == "playing"): ?>
+                                                <div class="badge badge-primary"><?= $teamResult['status']; ?></div>
+                                        <?php elseif($teamResult['status'] == "pending"): ?>
+                                            <div class="badge badge-danger"><?= $teamResult['status']; ?></div>
+                                        <?php elseif($teamResult['status'] == "played"): ?>
+                                            <div class="badge badge-success"><?= $teamResult['status']; ?></div>
+                                        <?php endif; ?>
+                                    </td>
                                     <td>
                                         <div class="row">
                                             <div class="col-md-4">
@@ -75,9 +85,44 @@
                                             <div class="col-md-4">
                                                 <a href="" class="text-danger"><small>Delete</small></a>
                                             </div>
+                                            <div class="col-md-4">
+                                                <a href="" data-toggle="modal" data-target="#updateMatchStatus<?= $teamResult['matchId']; ?>" class="text-success"><small>status</small></a>
+                                            </div>
                                         </div>
                                     </td>
                                 </tr>
+                                <!-- match status updation -->
+                                <div class="modal fade" id="updateMatchStatus<?= $teamResult['matchId']; ?>" tabindex="-1" role="dialog" aria-labelledby="updateMatchStatus<?= $teamResult['status']; ?>" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="newMatch">Now you can update match status</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                            <form action="matchAction.php" method="POST" autocomplete="off" role="form"">
+                                                    <div class="form-group" hidden>
+                                                        <input type="number" name="matchId" value="<?= $teamResult['matchId']; ?>" class="form-control" placeholder="Enter matchId">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select name="status" id="status" class="form-control">
+                                                            <option >Update match status</option>
+                                                            <option value="pending">Pending</option>
+                                                            <option value="played">Played</option>
+                                                            <option value="playing">Playing</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cansel</button>
+                                                    <button type="submit" name="updateStatus" class="btn btn-primary">Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                     <?php endwhile; endif;?>
                 </tbody>
                 </table>

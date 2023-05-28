@@ -18,4 +18,17 @@
             header('location:match.php?key=fail');
         }
     }
+    elseif(isset($_POST["updateStatus"])){        
+        $matchId = $_POST['matchId'];
+        $status = $_POST['status'];
+        $updateStatus = $conn->query("UPDATE `match` SET status = '$status' where matchId = '$matchId' " );
+        if($updateStatus){
+            $_SESSION['success'] = "successfully";
+            header('location:team.php?key=success');
+        }
+        else{
+            $_SESSION['error'] = "fail, try again";
+            header('location:team.php?key=fail');
+        }
+    }
 ?>
