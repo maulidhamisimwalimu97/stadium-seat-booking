@@ -5,7 +5,13 @@
         $email = $_POST["email"];
         $matchId = $_POST["matchId"];
 
-        $getTicket = $conn->query("INSERT into `user` values(null, '$name', '$email','$matchId' )" );
+        // getting match fans
+        $teamRecord = $conn->query("SELECT * FROM `match` where matchId = '$matchId' ");
+        $result = mysqli_fetch_assoc($teamRecord);
+        $decrementSeat = $result['numberOffans'] + 1;
+
+        $conn->query("INSERT into `user` values(null, '$name', '$email','$matchId' )" );
+        $getTicket = $conn->query("UPDATE `match` SET `numberOffans` = '$decrementSeat' WHERE `match`.`matchId` =  '$matchId' " );
         if($getTicket){
             $_SESSION['success'] = "complite";
             header('location:booking.php?key=success');

@@ -3,8 +3,9 @@
     if(isset($_POST["submit"])){
         $user_id = $_POST["user_id"];
         $type = $_POST["type"];
+        $whichMatch = $_POST["whichMatch"];
 
-        $conn->query("INSERT into `seat` values(null, '$user_id', '$type', '')");
+        $conn->query("INSERT into `seat` values(null, '$user_id', '$type', '', '$whichMatch')");
         $seatPayment = $conn->query("SELECT * From seat order by seat_id desc");
         $feeToInsert = mysqli_fetch_assoc($seatPayment);
         if($feeToInsert['type'] == 'ROUND'):

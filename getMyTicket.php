@@ -4,7 +4,7 @@
     $userId = $conn->query("SELECT * From seat order by seat_id desc");
     $user_id = mysqli_fetch_assoc($userId);
     $user = $user_id['user_id'];
-    $sql= "SELECT * FROM `match`, `user`, `seat` WHERE seat.user_id = user.user_id AND user.matchId = match.matchId and user.user_id = '5' ORDER BY seat_id DESC limit 1;";
+    $sql= "SELECT * FROM `match`, `user`, `seat` WHERE seat.user_id = user.user_id AND user.matchId = match.matchId and user.user_id = '$user' ORDER BY seat_id DESC limit 1;";
     $query=mysqli_query($conn,$sql);
     $result = mysqli_fetch_assoc($query); ?>
 <div id="getMyTicket">

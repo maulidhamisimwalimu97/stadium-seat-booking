@@ -6,7 +6,9 @@
 	<h4>Make your booking at Mkapa Stadium</h4>
 	<div class="row my-3">        
 		<?php
-			$teamRecord = $conn->query("SELECT * FROM `match` ");
+			$dateTime = date('Y-m-d');
+			$timeToPray = date('H:i:sa');
+			$teamRecord = $conn->query("SELECT * FROM `match` where dateToPray > '$dateTime' and timeToPray != '$timeToPray'");
 			if(mysqli_num_rows($teamRecord) > 0):
 				while($teamResult = mysqli_fetch_array($teamRecord)): ?>
 					<div class="col-md-4">
@@ -21,10 +23,19 @@
 										<p>Date <?= $teamResult['timeToPray']; ?></p>
 									</div>
 								</div>
-								<a href="seatBooking.php?matchId=<?php echo $teamResult['matchId']; ?>">Booke Your Seat Now</a>
+								<?php
+									if($teamResult['numberOffans'] > 6): ?>
+										<div class="container">
+											<div class="alert alert-danger">
+												No Seat Available For This Match
+											</div>
+										</div>
+								<?php else: ?>
+										<a href="seatBooking.php?matchId=<?php echo $teamResult['matchId']; ?>">Booke Your Seat Now</a>
+								<?php endif; ?>
 							</div>
 						</div>
 					</div>			
-		<?php endwhile; endif; ?>
+		<?php 	endwhile; endif; ?>
 	</div>
 </div>

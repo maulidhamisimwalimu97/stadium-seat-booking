@@ -7,8 +7,9 @@
         $timeToPray = $_POST['timeToPray'];
         $whichStadium = $_POST['whichStadium'];
         $status = $_POST['status'];
+        $numberOffans = $_POST['numberOffans'];
 
-        $registerMatch = $conn->query("INSERT INTO `match` VALUES (null, '$teamOne', '$teamTwo', '$dateToPray', '$timeToPray', '$whichStadium', '$status')" );
+        $registerMatch = $conn->query("INSERT INTO `match` VALUES (null, '$teamOne', '$teamTwo', '$dateToPray', '$timeToPray', '$whichStadium', '$status', '$numberOffans')" );
         if($registerMatch){
             $_SESSION['success'] = "Match added";
             header('location:match.php?key=success');

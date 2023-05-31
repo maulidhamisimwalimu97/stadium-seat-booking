@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 28, 2023 at 11:44 AM
+-- Generation Time: May 31, 2023 at 09:38 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -83,15 +83,17 @@ CREATE TABLE `match` (
   `dateToPray` date NOT NULL,
   `timeToPray` text NOT NULL,
   `whichStadium` int(11) NOT NULL,
-  `status` varchar(20) NOT NULL DEFAULT 'pending'
+  `status` varchar(20) NOT NULL DEFAULT 'pending',
+  `numberOffans` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `match`
 --
 
-INSERT INTO `match` (`matchId`, `teamOne`, `teamTwo`, `dateToPray`, `timeToPray`, `whichStadium`, `status`) VALUES
-(1, 'simba', 'young african', '2023-06-10', '17:45', 1, 'pending');
+INSERT INTO `match` (`matchId`, `teamOne`, `teamTwo`, `dateToPray`, `timeToPray`, `whichStadium`, `status`, `numberOffans`) VALUES
+(1, 'simba', 'young african', '2023-06-10', '17:45', 1, 'pending', 0),
+(4, 'Mbeya city fc', 'tanzania prison', '2023-06-10', '16:35', 1, 'pending', 0);
 
 -- --------------------------------------------------------
 
@@ -103,23 +105,27 @@ CREATE TABLE `seat` (
   `seat_id` int(30) NOT NULL,
   `user_id` int(11) NOT NULL,
   `type` enum('VIP','ROUND','REGULAR') NOT NULL,
-  `seatTypeFee` int(30) NOT NULL
+  `seatTypeFee` int(30) NOT NULL,
+  `whichMatch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `seat`
 --
 
-INSERT INTO `seat` (`seat_id`, `user_id`, `type`, `seatTypeFee`) VALUES
-(1, 0, '', 0),
-(2, 4, 'ROUND', 0),
-(3, 5, 'ROUND', 0),
-(4, 5, 'ROUND', 10000),
-(5, 5, 'ROUND', 0),
-(6, 5, 'VIP', 0),
-(7, 5, 'ROUND', 0),
-(8, 5, 'VIP', 10000),
-(9, 5, 'VIP', 10000);
+INSERT INTO `seat` (`seat_id`, `user_id`, `type`, `seatTypeFee`, `whichMatch`) VALUES
+(1, 0, 'REGULAR', 0, 0),
+(2, 4, 'ROUND', 0, 0),
+(3, 5, 'ROUND', 0, 0),
+(4, 5, 'ROUND', 10000, 0),
+(5, 5, 'ROUND', 0, 1),
+(6, 5, 'VIP', 0, 0),
+(7, 5, 'ROUND', 0, 1),
+(8, 5, 'VIP', 10000, 1),
+(9, 5, 'VIP', 10000, 0),
+(10, 8, 'REGULAR', 30000, 1),
+(11, 9, 'REGULAR', 30000, 1),
+(12, 10, 'VIP', 40000, 1);
 
 -- --------------------------------------------------------
 
@@ -163,7 +169,12 @@ INSERT INTO `user` (`user_id`, `name`, `email`, `matchId`) VALUES
 (2, 'samile', 'samileking9@gmail.com', 0),
 (3, 'yohana samile', 'yohanasamile@gmail.com', 1),
 (4, 'yohana samile', 'yohanasamile@gmail.com', 1),
-(5, 'yohana samile', 'yohanasamile@gmail.com', 1);
+(5, 'yohana samile', 'yohanasamile@gmail.com', 1),
+(6, 'frank ', 'samileking9@gmail.com', 1),
+(7, 'frank ', 'samileking9@gmail.com', 1),
+(8, 'frank ', 'samileking9@gmail.com', 1),
+(9, 'japan', 'samileking@gmail.com', 1),
+(10, 'frank frank', 'alicesamile@gmail.com', 1);
 
 --
 -- Indexes for dumped tables
@@ -233,13 +244,13 @@ ALTER TABLE `event`
 -- AUTO_INCREMENT for table `match`
 --
 ALTER TABLE `match`
-  MODIFY `matchId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `matchId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `seat`
 --
 ALTER TABLE `seat`
-  MODIFY `seat_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `seat_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `stadiums`
@@ -251,7 +262,7 @@ ALTER TABLE `stadiums`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -30,6 +30,7 @@
                 <label for="cause">location:</label>
                 <input type="text" class="form-control" name="status" value="pending">
               </div>
+              <input type="number" class="form-control" name="numberOffans" value="0">
               <button type="submit" name="submit" class="btn btn-sm  btn-primary">REGISTER</button>  
         </form>
       </div>
